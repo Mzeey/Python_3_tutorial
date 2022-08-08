@@ -19,7 +19,7 @@ class App:
             self.startRound()
             bet = int(input(self.MESSAGE.PLACE_BET))
             self.Player_1.bet(bet)
-            
+            print(self.Player_1)
             if self.Player_1.checkBlackJack():
                 if self.House.checkBlackJack():
                     self.Player_1.draw()
@@ -30,7 +30,7 @@ class App:
                 self.houseDraw()
                 self.checkWinner()
             print(f"{self.MESSAGE.ROUND_ENDED}{self.Player_1.Money}")
-            action = input()
+            action = input(self.MESSAGE.CONTINUE_PLAYING)
             if action == "y":
                 print(self.MESSAGE.STARTING_ROUND)
             else:
