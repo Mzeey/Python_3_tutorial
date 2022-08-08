@@ -37,7 +37,8 @@ class Player:
         self.setScore()
     
     def play(self, hand = []):
-        self.__init__(hand)
+        self.Hand = hand
+        self.Score = 0
     
     def bet(self, ammount):
         self.Money -= ammount
