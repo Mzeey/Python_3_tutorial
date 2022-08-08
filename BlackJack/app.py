@@ -1,5 +1,4 @@
 from random import randint
-from xmlrpc.client import FastParser
 from house import House
 from player import Player
 from deck import Deck
