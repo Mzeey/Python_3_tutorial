@@ -6,13 +6,14 @@ class Player:
         self.Score = 0
         self.Bet = 0
         self.setScore()
+        
     def __repr__(self) -> str:
         current_hand = ""
         for card in self.Hand:
             current_hand += str(card) + " "
         return f"Current Hand: [{current_hand}]; Score: {self.Score}"
 
-    def __checkBlackJack(self):
+    def checkBlackJack(self):
         isBlackJack = False
         if self.Score == 21 and len(self.Hand) == 2:
             isBlackJack = True
@@ -35,8 +36,8 @@ class Player:
         self.Hand.append(card)
         self.setScore()
     
-    def play(self):
-        self.__init__()
+    def play(self, hand = []):
+        self.__init__(hand)
     
     def bet(self, ammount):
         self.Money -= ammount
@@ -45,23 +46,14 @@ class Player:
     def win(self, has_won):
         DOUBLE_BET = 2
         BLACKJACK_BET = 2.5
-        isBlackJack = self.__checkBlackJack()
+        isBlackJack = self.checkBlackJack()
         if has_won == True:
             if isBlackJack:
                 self.Money += round(self.Bet * BLACKJACK_BET)
             else:
                 self.Money += self.Bet * DOUBLE_BET
         self.Bet = 0
-
-player = Player(["3", "7", "5"])
-print(player)
-
-player.play()
-player.hitCard("A")
-player.hitCard("K")
-
-player.bet(50)
-player.win(False)
-print(player.Money)
-print(player)
-
+    
+    def draw(self):
+        self.Money += self.Bet
+        self.Bet = 0
